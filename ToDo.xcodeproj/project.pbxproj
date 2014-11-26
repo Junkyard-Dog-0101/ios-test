@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		CE8F7C611A25A84800129E27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F7C601A25A84800129E27 /* AppDelegate.swift */; };
-		CE8F7C631A25A84800129E27 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F7C621A25A84800129E27 /* ViewController.swift */; };
 		CE8F7C661A25A84800129E27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE8F7C641A25A84800129E27 /* Main.storyboard */; };
 		CE8F7C681A25A84800129E27 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE8F7C671A25A84800129E27 /* Images.xcassets */; };
 		CE8F7C6B1A25A84800129E27 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE8F7C691A25A84800129E27 /* LaunchScreen.xib */; };
 		CE8F7C771A25A84800129E27 /* ToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F7C761A25A84800129E27 /* ToDoTests.swift */; };
+		CE8F7C811A25B0CD00129E27 /* TDListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F7C801A25B0CD00129E27 /* TDListTableViewController.swift */; };
+		CE8F7C861A25B82E00129E27 /* TDLToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F7C851A25B82E00129E27 /* TDLToDoItem.swift */; };
+		CE8F7C8A1A25C9C000129E27 /* TDLItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F7C891A25C9C000129E27 /* TDLItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +31,15 @@
 		CE8F7C5B1A25A84800129E27 /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE8F7C5F1A25A84800129E27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE8F7C601A25A84800129E27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE8F7C621A25A84800129E27 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CE8F7C651A25A84800129E27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE8F7C671A25A84800129E27 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CE8F7C6A1A25A84800129E27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		CE8F7C701A25A84800129E27 /* ToDoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE8F7C751A25A84800129E27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE8F7C761A25A84800129E27 /* ToDoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTests.swift; sourceTree = "<group>"; };
+		CE8F7C801A25B0CD00129E27 /* TDListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TDListTableViewController.swift; path = ../TDListTableViewController.swift; sourceTree = "<group>"; };
+		CE8F7C851A25B82E00129E27 /* TDLToDoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TDLToDoItem.swift; path = ToDo/TDLToDoItem.swift; sourceTree = "<group>"; };
+		CE8F7C891A25C9C000129E27 /* TDLItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TDLItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +81,10 @@
 		CE8F7C5D1A25A84800129E27 /* ToDo */ = {
 			isa = PBXGroup;
 			children = (
+				CE8F7C841A25B15A00129E27 /* Views */,
+				CE8F7C831A25B14100129E27 /* Vew Controllers */,
+				CE8F7C821A25B0FC00129E27 /* Model */,
 				CE8F7C601A25A84800129E27 /* AppDelegate.swift */,
-				CE8F7C621A25A84800129E27 /* ViewController.swift */,
 				CE8F7C641A25A84800129E27 /* Main.storyboard */,
 				CE8F7C671A25A84800129E27 /* Images.xcassets */,
 				CE8F7C691A25A84800129E27 /* LaunchScreen.xib */,
@@ -110,6 +116,31 @@
 				CE8F7C751A25A84800129E27 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CE8F7C821A25B0FC00129E27 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE8F7C851A25B82E00129E27 /* TDLToDoItem.swift */,
+			);
+			name = Model;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		CE8F7C831A25B14100129E27 /* Vew Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE8F7C801A25B0CD00129E27 /* TDListTableViewController.swift */,
+				CE8F7C891A25C9C000129E27 /* TDLItemViewController.swift */,
+			);
+			name = "Vew Controllers";
+			sourceTree = "<group>";
+		};
+		CE8F7C841A25B15A00129E27 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,8 +243,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE8F7C631A25A84800129E27 /* ViewController.swift in Sources */,
+				CE8F7C861A25B82E00129E27 /* TDLToDoItem.swift in Sources */,
+				CE8F7C8A1A25C9C000129E27 /* TDLItemViewController.swift in Sources */,
 				CE8F7C611A25A84800129E27 /* AppDelegate.swift in Sources */,
+				CE8F7C811A25B0CD00129E27 /* TDListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +322,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -325,7 +358,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
