@@ -10,18 +10,41 @@ import UIKit
 
 class TDListTableViewController: UITableViewController {
     
-    var toDoItemsArray: [ToDoItem] = [];
+    var toDoItemsArray = NSMutableArray();
+    
+    // [ToDoItem] = [];
     
     override func awakeFromNib() {
-        toDoItemsArray.append(ToDoItem(name: "milk"));
-           toDoItemsArray.append(ToDoItem(name: "milf"));
-           toDoItemsArray.append(ToDoItem(name: "milk"));
-           toDoItemsArray.append(ToDoItem(name: "milf"));
+//        toDoItemsArray.append(ToDoItem(name: "milk"));
+  //         toDoItemsArray.append(ToDoItem(name: "milf"));
+    ///       toDoItemsArray.append(ToDoItem(name: "milk"));
+       //    toDoItemsArray.append(ToDoItem(name: "milf"));
+        readFromPropertyList()
         super.awakeFromNib();
     }
+    
+    private func readFromPropertyList() {
+        let fileURL = dataFileURL()
+        
+        if NSFileManager.defaultManager().fileExistsAtPath(fileURL.path!) {
+        let savedToDoItems = NSArray(contentsOfURL: fileURL)
+        for var index = 0; index < savedToDoItems?.count; index++ {
+            let savedItem = savedToDoItems![index] as NSArray
+            
+            let toDoItem = ToDoItem(name: savedItem[0] as String)
+            toDoItem.completed = savedItem[1] as Bool
+            self.toDoItemsArray.addObject(toDoItem)
+            }
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let application = UIApplication.sharedApplication()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"handleResignActiveNotification:", name: UIApplicationWillResignActiveNotification, object: application)
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -29,6 +52,28 @@ class TDListTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    func handleResignActiveNotification(notification: NSNotification) {
+        let fileURL = dataFileURL()
+        
+        var savedItemsArray: NSMutableArray = []
+        
+        for toDoItem in toDoItemsArray {
+            let item = toDoItem as ToDoItem
+            savedItemsArray.addObject([item.itemName, item.completed])
+        }
+        
+        toDoItemsArray.writeToURL(fileURL, atomically: true)
+        
+    }
+    
+    private func dataFileURL() -> NSURL {
+        
+        let documentURLArray = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains:NSSearchPathDomainMask.UserDomainMask) as [NSURL];
+        let documentURL = documentURLArray.last?.URLByAppendingPathComponent("toDoItems.plist")
+        
+        return documentURL!
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -51,9 +96,10 @@ class TDListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ListCell", forIndexPath: indexPath) as UITableViewCell
 //        toDoItemsArray[indexPath.row].itemName;
-        cell.textLabel.text = toDoItemsArray[indexPath.row].itemName;
+        let toDoItem = toDoItemsArray[indexPath.row] as ToDoItem
+        cell.textLabel.text = toDoItem.itemName;
         // Configure the cell...
-        if (toDoItemsArray[indexPath.row].completed) {
+        if (toDoItem.completed) {
             cell.accessoryType = .Checkmark;
         }
         else {
@@ -70,7 +116,8 @@ class TDListTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true);
-        let tappedItem = toDoItemsArray[indexPath.row]
+         let toDoItem = toDoItemsArray[indexPath.row] as ToDoItem
+        let tappedItem = toDoItem
         tappedItem.completed = !tappedItem.completed
         
         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
@@ -125,7 +172,7 @@ class TDListTableViewController: UITableViewController {
     let source = segue.sourceViewController as TDLItemViewController
         
         if let item = source.toDoItem {
-        toDoItemsArray.append(item)
+        toDoItemsArray.addObject(item)
             tableView.reloadData();
         }
     }

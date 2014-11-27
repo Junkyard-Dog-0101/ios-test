@@ -11,7 +11,8 @@ import UIKit
 class TDLItemViewController: UIViewController {
 //TDLAddItemViewController
     
-    @IBOutlet weak var done: UIBarButtonItem!
+    @IBOutlet weak var done: 
+    UIBarButtonItem!
     
     @IBOutlet weak var textField: UITextField!
    // @IBOutlet weak var cancel: UIBarButtonItem!
@@ -39,6 +40,17 @@ class TDLItemViewController: UIViewController {
         
         }
     }
+    
+   /* override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let senderButton = sender as? UIBarButtonItem {
+            if (senderButton == done)
+            {
+                toDoItem = ToDoItem(name: textField.text)
+                
+            }
+            
+        }
+    }*/
     /*
     // MARK: - Navigation
 

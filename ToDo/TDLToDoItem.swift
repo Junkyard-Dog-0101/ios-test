@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ToDoItem {
+@objc class ToDoItem: NSObject {
     var itemName: String;
     var completed: Bool = false;
     init(name:String) {
